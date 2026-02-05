@@ -1,4 +1,4 @@
-# 🧠 RAG Multimodal "Table-Master" (BOE Edition)
+#  RAG Multimodal "Table-Master" (BOE Edition)
 
 Este proyecto es un **Sistema de RAG (Retrieval-Augmented Generation) Multimodal Avanzado** diseñado para consultar documentos legales oficiales (como el BOE), entender tablas complejas, analizar imágenes y responder preguntas sobre datos de recursos humanos.
 
