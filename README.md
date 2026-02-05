@@ -187,7 +187,7 @@ Debido a la reestructuración, ejecuta los scripts desde la raíz del proyecto a
 ### 📚 Documentación Jurídica Cargada en el RAG
 
 Este proyecto utiliza una selección de **códigos electrónicos del BOE** como base de conocimiento para responder dudas de empleados, RRHH y Legal en una empresa media ubicada en el País Vasco.
-
+Un TOTAL de **8.000–12.000** páginas en total sumando los 30+ PDFs y los csv.
 #### 🧱 Núcleo Esencial (Empleados y RRHH)
 
 Normativa clave para el día a día laboral, función pública y derechos básicos:
