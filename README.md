@@ -183,3 +183,52 @@ Debido a la reestructuración, ejecuta los scripts desde la raíz del proyecto a
 | **Evaluación** | `python src/evaluation/eval_ragas.py` |
 
 ---
+
+### 📚 Documentación Jurídica Cargada en el RAG
+
+Este proyecto utiliza una selección de **códigos electrónicos del BOE** como base de conocimiento para responder dudas de empleados, RRHH y Legal en una empresa media ubicada en el País Vasco.[web:64][web:70]
+
+#### 🧱 Núcleo Esencial (Empleados y RRHH)
+
+Normativa clave para el día a día laboral, función pública y derechos básicos:
+
+- Constitución Española (actualizado)
+- Código de la Función Pública (actualizado)
+- Código Laboral y de la Seguridad Social (actualizado)
+- Código de Legislación Social (actualizado)
+- Prevención de riesgos laborales (actualizado)
+- Código de MUFACE, ISFAS y MUGEJU (actualizado)
+- Código de normativa reguladora de los Despidos Colectivos y los ERTE (actualizado)
+- Código de Derecho Sindical (actualizado)
+- Funcionarios de la Administración de Justicia (actualizado)
+- Trabajo Autónomo (actualizado)
+
+#### ⚙️ Administrativo / General (Legal / Operaciones)
+
+Normativa transversal para procedimientos administrativos y contratación:
+
+- Código de Derecho Administrativo (actualizado)
+- Procedimiento Administrativo Común (actualizado)
+- Código de Administración Electrónica (actualizado)
+- Código de Contratos del Sector Público (actualizado)
+- Código de Transparencia y Buen Gobierno (actualizado)
+- Código de Lobbies (actualizado)
+- Código de la estructura de la Administración General del Estado (actualizado)
+
+#### 🌍 Regional (País Vasco)
+
+Documentos específicos para contexto autonómico (Bilbao, País Vasco):
+
+- Código del País Vasco (actualizado)
+- Código del Derecho de la Discapacidad. Legislación del País Vasco (actualizado)
+- Código de Urbanismo del País Vasco (actualizado)
+- Código de la Vivienda del País Vasco (actualizado)
+
+#### 🛡️ Seguridad y Cumplimiento (Corporativo)
+
+Normas orientadas a seguridad, datos y ciberseguridad corporativa:
+
+- Código de Seguridad Ciudadana (actualizado)
+- Código de Seguridad Privada (actualizado)
+- Protección de Datos de Carácter Personal (actualizado)[web:63][web:66][web:69]
+- Código de Ciberseguridad (actualizado)
