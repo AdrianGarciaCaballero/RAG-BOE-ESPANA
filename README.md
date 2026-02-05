@@ -1,4 +1,4 @@
-#  RAG Multimodal "Table-Master" (BOE Edition)
+#  RAG Multimodal (BOE Edition)
 
 Este proyecto es un **Sistema de RAG (Retrieval-Augmented Generation) Multimodal Avanzado** diseñado para consultar documentos legales oficiales (como el BOE), entender tablas complejas, analizar imágenes y responder preguntas sobre datos de recursos humanos.
 
@@ -146,29 +146,29 @@ El código ha sido reorganizado en una arquitectura modular dentro de `src/` par
 
 ```plaintext
 📦 RAG-BOE-ESPANA
- ┣ 📂 src                    # Código Fuente Principal
- ┃ ┣ 📂 api                  # Backend FastAPI
- ┃ ┃ ┣ 📜 main.py            # 🧠 API REST & Grafo LangChain
- ┃ ┃ ┗ 📜 retrieval_engine.py# 🔍 Motor de búsqueda (BM25 + Chroma)
- ┃ ┣ 📂 frontend             # Interfaz de Usuario
- ┃ ┃ ┗ 📜 frontend.py        # 🎨 App Streamlit
- ┃ ┣ 📂 ingestion            # ETL & Procesamiento
- ┃ ┃ ┣ 📜 ingest.py          # Script principal de ingesta PDF
- ┃ ┃ ┣ 📜 ingest_csv.py      # Ingesta de Datos Estructurados
- ┃ ┃ ┣ 📜 ingest_images.py   # Ingesta de Imágenes
- ┃ ┃ ┗ 📜 ingest_multimodal.py # Orquestador avanzado
- ┃ ┣ 📂 evaluation           # Métricas & Calidad
- ┃ ┃ ┣ 📜 eval_ragas.py      # Validación RAGAS (LLM-as-Judge)
- ┃ ┃ ┗ 📜 eval_retrieval.py  # Validación Retrieval (Hit Rate/MRR)
- ┃ ┣ 📂 bot                  # Integraciones
- ┃ ┃ ┗ 📜 telegram_bot.py    # 🤖 Bot de Telegram
- ┃ ┗ 📂 utils                # Utilidades
- ┃   ┗ 📜 tools_data.py      # Herramientas de Pandas/Datos
- ┣ 📂 chroma_db              # 💾 Base de datos Vectorial
- ┣ 📂 data                   # 📊 Datos CSV y Golden Datasets
- ┣ 📂 docs                   # 📄 Documentos PDF de entrada
- ┣ 📂 static/labeled_images  # 🖼️ Imágenes extraídas etiquetadas
- ┗ 📜 requirements.txt       # Dependencias
+ ┣ 📂 src                             # Código Fuente Principal
+ ┃ ┣ 📂 api                           # Backend FastAPI
+ ┃ ┃ ┣ 📜 main.py                     # 🧠 API REST & Grafo LangChain
+ ┃ ┃ ┗ 📜 retrieval_engine.py         # 🔍 Motor de búsqueda (BM25 + Chroma)
+ ┃ ┣ 📂 frontend                      # Interfaz de Usuario
+ ┃ ┃ ┗ 📜 frontend.py                 # 🎨 App Streamlit
+ ┃ ┣ 📂 ingestion                     # ETL & Procesamiento
+ ┃ ┃ ┣ 📜 ingest.py                   # Script principal de ingesta PDF
+ ┃ ┃ ┣ 📜 ingest_csv.py               # Ingesta de Datos Estructurados
+ ┃ ┃ ┣ 📜 ingest_images.py            # Ingesta de Imágenes
+ ┃ ┃ ┗ 📜 ingest_multimodal.py        # Orquestador avanzado
+ ┃ ┣ 📂 evaluation                    # Métricas & Calidad
+ ┃ ┃ ┣ 📜 eval_ragas.py               # Validación RAGAS (LLM-as-Judge)
+ ┃ ┃ ┗ 📜 eval_retrieval.py           # Validación Retrieval (Hit Rate/MRR)
+ ┃ ┣ 📂 bot                           # Integraciones
+ ┃ ┃ ┗ 📜 telegram_bot.py             # 🤖 Bot de Telegram
+ ┃ ┗ 📂 utils                         # Utilidades
+ ┃   ┗ 📜 tools_data.py               # Herramientas de Pandas/Datos
+ ┣ 📂 chroma_db                       # 💾 Base de datos Vectorial
+ ┣ 📂 data                            # 📊 Datos CSV y Golden Datasets
+ ┣ 📂 docs                            # 📄 Documentos PDF de entrada
+ ┣ 📂 static/labeled_images           # 🖼️ Imágenes extraídas etiquetadas
+ ┗ 📜 requirements.txt                # Dependencias
 ```
 
 ### 📍 Guía Rápida de Ejecución (Nuevas Rutas)
