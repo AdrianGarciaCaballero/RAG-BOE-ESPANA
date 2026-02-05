@@ -105,7 +105,11 @@ El proyecto incluye un sistema completo de evaluación cuantitativa para medir l
 ### 1. Evaluación del Buscador (Retrieval)
 Script: `eval_retrieval.py`
 *   **Métricas**: Hit Rate @ K y MRR (Mean Reciprocal Rank).
-*   **Comparativa**: Genera automáticamente una tabla comparando configuraciones (ej. Top-3 vs Top-10).
+*   **Resultados Actuales (v1.5)**:
+    | Configuración | Hit Rate | MRR |
+    | :--- | :--- | :--- |
+    | **Top-3 (Strict)** | **0.80** | **0.70** |
+    | **Top-10 (Broad)** | **1.00** | **0.74** |
 *   **Ejecución**:
     ```bash
     python eval_retrieval.py
@@ -114,6 +118,11 @@ Script: `eval_retrieval.py`
 ### 2. Evaluación de Generación (RAGAS)
 Script: `eval_ragas.py`
 *   **Métricas**: Faithfulness (Fidelidad) y Answer Relevancy.
+*   **Resultados Preliminares (Sample n=3)**:
+    | Métrica | Puntuación | Descripción |
+    | :--- | :--- | :--- |
+    | **Faithfulness** | **0.88** | Precisión factual respecto al contexto |
+    | **Answer Relevancy** | **0.71** | Relevancia de la respuesta a la pregunta |
 *   **Juez**: Utiliza LLM local (Ollama) para evaluar las respuestas generadas sin coste de API.
 *   **Dataset**: Utiliza `data/golden_dataset.json` como "Golden Set" de verdad terreno.
 *   **Ejecución**:
