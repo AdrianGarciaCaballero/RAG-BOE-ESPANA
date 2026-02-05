@@ -186,7 +186,7 @@ Debido a la reestructuración, ejecuta los scripts desde la raíz del proyecto a
 
 ### 📚 Documentación Jurídica Cargada en el RAG
 
-Este proyecto utiliza una selección de **códigos electrónicos del BOE** como base de conocimiento para responder dudas de empleados, RRHH y Legal en una empresa media ubicada en el País Vasco.[web:64][web:70]
+Este proyecto utiliza una selección de **códigos electrónicos del BOE** como base de conocimiento para responder dudas de empleados, RRHH y Legal en una empresa media ubicada en el País Vasco.
 
 #### 🧱 Núcleo Esencial (Empleados y RRHH)
 
