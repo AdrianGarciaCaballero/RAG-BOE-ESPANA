@@ -1,0 +1,3 @@
+Config,Hit Rate,MRR
+Top-3 (Strict),0.8,0.7
+Top-10 (Broad),1.0,0.74
