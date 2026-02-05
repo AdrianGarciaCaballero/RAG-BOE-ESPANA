@@ -13,6 +13,7 @@ Este proyecto es un **Sistema de RAG (Retrieval-Augmented Generation) Multimodal
 ### 2. 👁️ Capacidades Multimodales (Vision)
 *   **Análisis Visual de Documentos**: Si el documento contiene imágenes o gráficos, el sistema las busca mediante descripción semántica.
 *   **Visual Filter (LLaVA)**: Un nodo agente utiliza el modelo de visión `llava` para "mirar" la imagen candidata y verificar si contiene la respuesta exacta (ej: leer un dato numérico de una tabla escaneada).
+*   **Base de Conocimiento Visual**: El sistema utiliza un repositorio de imágenes pre-procesadas y etiquetadas (en `static/labeled_images`) que se recuperan y adjuntan automáticamente a la respuesta cuando son relevantes para la consulta del usuario.
 *   **Query-by-Image**: ¡Nuevo! Puedes subir una foto (nómina, contrato) al chat y preguntar sobre ella. El sistema la analiza con LLaVA y usa esa información para buscar en la base de datos.
 
 ### 3. 🧠 Router & Agentes ("Cerebro")
@@ -77,6 +78,13 @@ streamlit run frontend.py
 ```
 Se abrirá tu navegador en `http://localhost:8501`.
 
+### 4. Iniciar el Bot de Telegram
+En **otra** terminal:
+```bash
+python src/bot/telegram_bot.py
+```
+*Asegúrate de tener un `TELEGRAM_TOKEN` válido en tu archivo `.env` o variables de entorno.*
+
 ---
 
 ## 🧪 Ejemplos de Pruebas
@@ -134,14 +142,44 @@ Script: `eval_ragas.py`
 
 ## 📂 Estructura de Proyecto
 
-*   `main.py`: **API Backend**. Contiene el grafo LangGraph, Nodos (Router, Retriever, Vision), y endpoints.
-*   `frontend.py`: **Interfaz Streamlit**. Chatbot con soporte de subida de archivos e imágenes.
-*   `ingest_multimodal.py`: **Script de Ingesta Avanzada**. PyMuPDF4LLM + Semantic Chunking.
-*   `tools_data.py`: Herramienta para consultar `data/employees.csv`.
-*   `eval_retrieval.py`: **Script de Validación SAA**. Mide Hit Rate y MRR.
-*   `eval_ragas.py`: **Script de Validación SAA**. Mide métricas RAGAS.
-*   `data/`: Carpeta para bases de datos estructuradas (CSV) y **Golden Dataset**.
-*   `docs/`: Carpeta donde dejas tus PDFs.
-*   `chroma_db/`: Base de datos vectorial (generada automáticamente).
+El código ha sido reorganizado en una arquitectura modular dentro de `src/` para escalabilidad y limpieza.
+
+```plaintext
+📦 RAG-BOE-ESPANA
+ ┣ 📂 src                    # Código Fuente Principal
+ ┃ ┣ 📂 api                  # Backend FastAPI
+ ┃ ┃ ┣ 📜 main.py            # 🧠 API REST & Grafo LangChain
+ ┃ ┃ ┗ 📜 retrieval_engine.py# 🔍 Motor de búsqueda (BM25 + Chroma)
+ ┃ ┣ 📂 frontend             # Interfaz de Usuario
+ ┃ ┃ ┗ 📜 frontend.py        # 🎨 App Streamlit
+ ┃ ┣ 📂 ingestion            # ETL & Procesamiento
+ ┃ ┃ ┣ 📜 ingest.py          # Script principal de ingesta PDF
+ ┃ ┃ ┣ 📜 ingest_csv.py      # Ingesta de Datos Estructurados
+ ┃ ┃ ┣ 📜 ingest_images.py   # Ingesta de Imágenes
+ ┃ ┃ ┗ 📜 ingest_multimodal.py # Orquestador avanzado
+ ┃ ┣ 📂 evaluation           # Métricas & Calidad
+ ┃ ┃ ┣ 📜 eval_ragas.py      # Validación RAGAS (LLM-as-Judge)
+ ┃ ┃ ┗ 📜 eval_retrieval.py  # Validación Retrieval (Hit Rate/MRR)
+ ┃ ┣ 📂 bot                  # Integraciones
+ ┃ ┃ ┗ 📜 telegram_bot.py    # 🤖 Bot de Telegram
+ ┃ ┗ 📂 utils                # Utilidades
+ ┃   ┗ 📜 tools_data.py      # Herramientas de Pandas/Datos
+ ┣ 📂 chroma_db              # 💾 Base de datos Vectorial
+ ┣ 📂 data                   # 📊 Datos CSV y Golden Datasets
+ ┣ 📂 docs                   # 📄 Documentos PDF de entrada
+ ┣ 📂 static/labeled_images  # 🖼️ Imágenes extraídas etiquetadas
+ ┗ 📜 requirements.txt       # Dependencias
+```
+
+### 📍 Guía Rápida de Ejecución (Nuevas Rutas)
+Debido a la reestructuración, ejecuta los scripts desde la raíz del proyecto asi:
+
+| Componente | Comando Nuevo |
+| :--- | :--- |
+| **Backend API** | `python src/api/main.py` |
+| **Frontend** | `streamlit run src/frontend/frontend.py` |
+| **Ingesta** | `python src/ingestion/ingest.py` |
+| **Bot Telegram** | `python src/bot/telegram_bot.py` |
+| **Evaluación** | `python src/evaluation/eval_ragas.py` |
 
 ---

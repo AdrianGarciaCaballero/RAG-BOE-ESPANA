@@ -5,7 +5,7 @@ from chromadb.utils import embedding_functions
 import uuid
 from typing import List
 
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 DOCS_DIR = os.path.join(BASE_DIR, "docs")
 STATIC_DIR = os.path.join(BASE_DIR, "static")
 IMAGES_DIR = os.path.join(STATIC_DIR, "images")

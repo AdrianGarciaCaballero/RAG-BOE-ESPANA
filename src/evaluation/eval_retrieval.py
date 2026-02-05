@@ -1,7 +1,9 @@
 import json
 import logging
 import pandas as pd
-from retrieval_engine import RetrievalEngine
+import sys
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../')))
+from src.api.retrieval_engine import RetrievalEngine
 import os
 import sys
 

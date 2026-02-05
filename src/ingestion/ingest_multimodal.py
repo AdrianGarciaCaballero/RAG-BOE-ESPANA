@@ -13,7 +13,9 @@ import multiprocessing
 import time
 import torch
 
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+import sys
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.append(BASE_DIR)
 DOCS_DIR = os.path.join(BASE_DIR, "docs")
 CHROMA_PATH = os.path.join(BASE_DIR, "chroma_db")
 COLLECTION_NAME = "rag_multimodal"
@@ -234,7 +236,7 @@ def main():
     
     # 2. Ingesta de Datos CSV (Nuevo)
     try:
-        from ingest_csv import ingest_csvs
+        from src.ingestion.ingest_csv import ingest_csvs
         ingest_csvs()
     except Exception as e:
         print(f"⚠️ Error ingestando CSVs: {e}")

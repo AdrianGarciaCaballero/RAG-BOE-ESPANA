@@ -1,5 +1,8 @@
 import os
 import logging
+import sys
+# Add project root to sys.path to allow imports from src
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../')))
 import base64
 import time
 from typing import List, Optional, TypedDict
@@ -16,12 +19,15 @@ import ollama
 import shutil
 from fastapi import UploadFile, File
 from sentence_transformers import SentenceTransformer 
-# from ingest_multimodal import process_pdf  # Lazy import to avoid startup errors
+# from src.ingestion.ingest_multimodal import process_pdf  # Lazy import
 from fastapi.responses import StreamingResponse, JSONResponse
-from retrieval_engine import RetrievalEngine # V5
+try:
+    from src.api.retrieval_engine import RetrievalEngine
+except ImportError:
+    from retrieval_engine import RetrievalEngine
 
 
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 STATIC_DIR = os.path.join(BASE_DIR, "static")
 IMAGES_DIR = os.path.join(STATIC_DIR, "labeled_images")
 CHROMA_PATH = os.path.join(BASE_DIR, "chroma_db")
@@ -248,7 +254,7 @@ def data_tool_node(state: GraphState):
     Responde JSON: {{"name": "...", "type": "..."}}"""
     
     try:
-        from tools_data import query_employee_data
+        from src.utils.tools_data import query_employee_data
         import json
         
         res = ollama.chat(model=LLM_TEXT_MODEL, messages=[{'role': 'user', 'content': prompt}])
@@ -591,7 +597,7 @@ async def ingest_document(file: UploadFile = File(...)):
             shutil.copyfileobj(file.file, buffer)
             
         # Lazy import to avoid startup errors
-        from ingest_multimodal import process_pdf
+        from src.ingestion.ingest_multimodal import process_pdf
         was_processed = process_pdf(file_path)
         
         if was_processed:

@@ -6,7 +6,9 @@ from chromadb.utils import embedding_functions
 import ollama
 
 # --- CONFIGURACIÓN ---
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+import sys
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.append(BASE_DIR)
 STATIC_DIR = os.path.join(BASE_DIR, "static")
 LABELED_IMAGES_DIR = os.path.join(STATIC_DIR, "labeled_images")
 CHROMA_PATH = os.path.join(BASE_DIR, "chroma_db")

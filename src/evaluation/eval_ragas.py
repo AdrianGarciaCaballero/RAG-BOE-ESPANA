@@ -36,7 +36,9 @@ def generate_responses(dataset):
     Genera respuestas usando el 'main.py' actual.
     Importante: Importar `app_graph` o la función `chat`.
     """
-    from main import app_graph
+    import sys
+    sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../')))
+    from src.api.main import app_graph
     
     ragas_data = {
         "question": [],

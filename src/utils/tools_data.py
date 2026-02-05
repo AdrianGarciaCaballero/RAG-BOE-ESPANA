@@ -1,7 +1,7 @@
 import pandas as pd
 import os
 
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 FILE_VACATIONS = os.path.join(BASE_DIR, "data", "Tabla Dinámica de VACACIONES.csv")
 FILE_SICK_LEAVE = os.path.join(BASE_DIR, "data", "Tabla de Bajas Médicas.csv")
 FILE_EMPLOYEES = os.path.join(BASE_DIR, "data", "employees.csv")

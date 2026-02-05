@@ -9,7 +9,8 @@ import time
 from datetime import datetime
 
 API_URL = "http://localhost:8000"
-HISTORY_FILE = "chat_history.json"
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+HISTORY_FILE = os.path.join(BASE_DIR, "chat_history.json")
 
 st.set_page_config(page_title="RAG Multimodal BOE", layout="wide")
 

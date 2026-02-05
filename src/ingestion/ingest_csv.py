@@ -5,7 +5,9 @@ from chromadb.utils import embedding_functions
 import torch
 
 # Configuracion
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+import sys
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.append(BASE_DIR)
 DATA_DIR = os.path.join(BASE_DIR, "data")
 CHROMA_PATH = os.path.join(BASE_DIR, "chroma_db")
 COLLECTION_NAME = "rag_multimodal" # Misma coleccion que los PDFs
