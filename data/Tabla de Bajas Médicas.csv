@@ -1,0 +1,51 @@
+ID_Baja,ID_Empleado,Nombre_Empleado,Tipo_Baja,Motivo_Detallado,Fecha_Inicio,Fecha_Alta,Dias_Totales,Coste_Empresa_Est
+B-001,EMP001,Carlos Ruiz,Común,Gripe estacional,2026-01-10,2026-01-15,5,120.50
+B-002,EMP005,Marta Vila,Profesional,Esguince en inspección,2026-02-01,2026-02-10,9,0.00 (Mutua)
+B-003,EMP012,Raúl Castro,Común,Intervención menor,2026-03-12,2026-03-22,10,450.00
+B-004,EMP021,Eva Amaral,Profesional,Fatiga visual técnica,2026-01-05,2026-01-07,2,0.00 (Mutua)
+B-005,EMP023,Rosario F.,Común,Lumbalgia,2026-04-15,2026-04-20,5,80.00
+B-006,EMP030,Melendi R.,Común,Infección respiratoria,2026-01-20,2026-01-25,5,150.00
+B-007,EMP002,Ana Belén G.,Profesional,Caída en vía pública,2026-02-15,2026-03-01,14,0.00 (TRADE)
+B-008,EMP045,India M.,Común,Migraña crónica,2026-05-10,2026-05-12,2,0.00
+B-009,EMP008,Roberto Gil,Común,Gastroenteritis,2026-06-01,2026-06-04,3,0.00 (Autónomo)
+B-010,EMP016,Marcos Paz,Profesional,Corte en mano (Herramienta),2026-03-20,2026-03-25,5,0.00 (Mutua)
+B-011,EMP004,Javier Solís,Común,Estrés laboral,2026-09-01,2026-09-15,14,850.00
+B-012,EMP033,Rosalía V.,Común,Reposo post-operatorio,2026-04-01,2026-04-20,19,400.00
+B-013,EMP026,Fito Cabrales,Común,Resfriado fuerte,2026-11-10,2026-11-13,3,0.00
+B-014,EMP011,Sofia Luna,Profesional,Ansiedad técnica,2026-05-20,2026-06-05,16,0.00 (Mutua)
+B-015,EMP050,Bunbury E.,Común,Dolor de muelas,2026-02-10,2026-02-12,2,0.00
+B-016,EMP009,Carla Ortiz,Común,Reacción alérgica,2026-04-25,2026-04-28,3,65.00
+B-017,EMP042,Manuel C.,Profesional,Sobreesfuerzo lumbar,2026-07-01,2026-07-10,9,0.00 (Mutua)
+B-018,EMP031,Aitana O.,Común,Amigdalitis,2026-01-15,2026-01-18,3,45.00
+B-019,EMP022,Pau Donés,Común,Revisión oncológica,2026-08-01,2026-08-05,4,200.00
+B-020,EMP036,Lola Indigo,Común,Vértigos,2026-03-05,2026-03-08,3,90.00
+B-021,EMP003,Lucía Méndez,Común,Tendinitis,2026-10-01,2026-10-10,9,180.00
+B-022,EMP048,Alejandro S.,Profesional,Accidente in itinere,2026-02-20,2026-03-10,18,0.00 (Mutua)
+B-023,EMP017,Julia Otero,Común,Sinusitis,2026-11-05,2026-11-08,3,75.00
+B-024,EMP029,Rozalén P.,Común,Recuperación física,2026-09-12,2026-09-15,3,55.00
+B-025,EMP007,Elena Pozo,Común,Cefalea tensional,2026-06-20,2026-06-21,1,0.00
+B-026,EMP038,Niña Pastori,Profesional,Lesión hombro,2026-04-05,2026-04-15,10,0.00
+B-027,EMP014,Iker Casado,Común,Varicela tardía,2026-01-05,2026-01-20,15,600.00
+B-028,EMP025,Malú Trejo,Común,Bronquitis,2026-12-10,2026-12-15,5,220.00
+B-029,EMP006,Sergio Ramos,Profesional,Golpe en rodilla,2026-08-01,2026-08-08,7,0.00
+B-030,EMP044,Pablo A.,Común,Insomnio severo,2026-05-02,2026-05-05,3,110.00
+B-031,EMP020,Luis Miguel,Común,Laringitis,2026-12-01,2026-12-05,4,140.00
+B-032,EMP013,Bea Atienza,Común,Esguince de tobillo,2026-06-15,2026-06-22,7,210.00
+B-033,EMP035,Bad Gyal,Común,Agotamiento,2026-10-20,2026-10-23,3,95.00
+B-034,EMP028,Leiva Sangre,Profesional,Exposición ruidos altos,2026-07-15,2026-07-20,5,0.00
+B-035,EMP041,Bustamante D.,Común,Otitis,2026-09-05,2026-09-10,5,130.00
+B-036,EMP019,Sara Baras,Común,Sobrecarga muscular,2026-11-20,2026-11-25,5,160.00
+B-037,EMP001,Carlos Ruiz,Común,Gastritis,2026-12-10,2026-12-12,2,0.00
+B-038,EMP010,Diego Sanz,Común,Gripe A,2026-01-25,2026-02-05,11,480.00
+B-039,EMP027,Amaia Montero,Común,Ansiedad,2026-03-10,2026-03-25,15,700.00
+B-040,EMP047,Pastora S.,Común,Faringitis,2026-02-05,2026-02-08,3,85.00
+B-041,EMP032,C. Tangana,Profesional,Traumatismo leve,2026-08-10,2026-08-12,2,0.00
+B-042,EMP024,Dani Martín,Común,Alergia polen,2026-05-15,2026-05-18,3,50.00
+B-043,EMP015,Lola Flores,Común,Lumbago,2026-09-20,2026-09-28,8,140.00
+B-044,EMP039,David Bisbal,Común,Molestias vocales,2026-10-05,2026-10-08,3,115.00
+B-045,EMP046,Antonio O.,Profesional,Caída misma altura,2026-06-05,2026-06-12,7,0.00
+B-046,EMP018,Omar Khayyam,Común,Migraña,2026-04-12,2026-04-14,2,0.00
+B-047,EMP049,Mónica N.,Común,Bronquitis aguda,2026-11-01,2026-11-10,9,380.00
+B-048,EMP034,Quevedo L.,Común,Gripe,2026-12-20,2026-12-26,6,210.00
+B-049,EMP037,Abraham M.,Común,Lesión deportiva,2026-07-20,2026-07-30,10,320.00
+B-050,EMP043,Vanesa M.,Profesional,Fatiga por pantallas,2026-02-12,2026-02-15,3,0.00

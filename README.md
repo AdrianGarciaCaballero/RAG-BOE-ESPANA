@@ -114,10 +114,14 @@ El proyecto incluye un sistema completo de evaluación cuantitativa para medir l
 Script: `eval_retrieval.py`
 *   **Métricas**: Hit Rate @ K y MRR (Mean Reciprocal Rank).
 *   **Resultados Actuales (v1.5)**:
-    | Configuración | Hit Rate | MRR |
-    | :--- | :--- | :--- |
-    | **Top-3 (Strict)** | **0.80** | **0.70** |
-    | **Top-10 (Broad)** | **1.00** | **0.74** |
+
+![Retrieval Metrics](static/metrics/retrieval_metrics.png)
+
+| Configuración | Hit Rate | MRR |
+| :--- | :--- | :--- |
+| **Top-3 (Strict)** | **0.80** | **0.70** |
+| **Top-10 (Broad)** | **1.00** | **0.74** |
+
 *   **Ejecución**:
     ```bash
     python eval_retrieval.py
@@ -127,10 +131,14 @@ Script: `eval_retrieval.py`
 Script: `eval_ragas.py`
 *   **Métricas**: Faithfulness (Fidelidad) y Answer Relevancy.
 *   **Resultados Preliminares (Sample n=3)**:
-    | Métrica | Puntuación | Descripción |
-    | :--- | :--- | :--- |
-    | **Faithfulness** | **0.88** | Precisión factual respecto al contexto |
-    | **Answer Relevancy** | **0.71** | Relevancia de la respuesta a la pregunta |
+
+![RAGAS Metrics](static/metrics/ragas_metrics.png)
+
+| Métrica | Puntuación | Descripción |
+| :--- | :--- | :--- |
+| **Faithfulness** | **0.88** | Precisión factual respecto al contexto |
+| **Answer Relevancy** | **0.71** | Relevancia de la respuesta a la pregunta |
+
 *   **Juez**: Utiliza LLM local (Ollama) para evaluar las respuestas generadas sin coste de API.
 *   **Dataset**: Utiliza `data/golden_dataset.json` como "Golden Set" de verdad terreno.
 *   **Ejecución**:
@@ -140,34 +148,48 @@ Script: `eval_ragas.py`
 
 ---
 
-## 📂 Estructura de Proyecto
+---
 
-El código ha sido reorganizado en una arquitectura modular dentro de `src/` para escalabilidad y limpieza.
+## 📂 Archivos y Configuración Necesaria
+
+El proyecto **incluye documentos y datos de ejemplo** (`docs/` y `data/`) para que puedas probarlo de inmediato, pero **necesitas generar la base de datos** localmente.
+
+### 1. Archivo `.env` (Variables de Entorno)
+Crea un archivo llamado `.env` en la raíz del proyecto y añade tu token de Telegram:
+```ini
+TELEGRAM_TOKEN=tu_token_de_telegram_aqui
+```
+
+### 2. Generar Base de Datos (Importante)
+La carpeta `chroma_db/` **NO está incluida** porque es demasiado pesada. Debes generarla tú mismo usando los documentos de ejemplo que sí incluimos.
+
+1.  Asegúrate de que las carpetas `docs/` y `data/` tienen archivos (ya incluidos en el repo).
+2.  Ejecuta el script de ingesta:
+    ```bash
+    python src/ingestion/ingest_multimodal.py
+    ```
+    *(Esto leerá los PDFs de `docs/` y creará la carpeta `chroma_db/` automáticamente).*
+
+### 3. Carpeta `static/labeled_images/`
+Esta carpeta se poblará automáticamente cuando ejecutes la ingesta.
+
+---
+
+## 📂 Estructura de Proyecto
 
 ```plaintext
 📦 RAG-BOE-ESPANA
  ┣ 📂 src                             # Código Fuente Principal
  ┃ ┣ 📂 api                           # Backend FastAPI
- ┃ ┃ ┣ 📜 main.py                     # 🧠 API REST & Grafo LangChain
- ┃ ┃ ┗ 📜 retrieval_engine.py         # 🔍 Motor de búsqueda (BM25 + Chroma)
  ┃ ┣ 📂 frontend                      # Interfaz de Usuario
- ┃ ┃ ┗ 📜 frontend.py                 # 🎨 App Streamlit
  ┃ ┣ 📂 ingestion                     # ETL & Procesamiento
- ┃ ┃ ┣ 📜 ingest.py                   # Script principal de ingesta PDF
- ┃ ┃ ┣ 📜 ingest_csv.py               # Ingesta de Datos Estructurados
- ┃ ┃ ┣ 📜 ingest_images.py            # Ingesta de Imágenes
- ┃ ┃ ┗ 📜 ingest_multimodal.py        # Orquestador avanzado
  ┃ ┣ 📂 evaluation                    # Métricas & Calidad
- ┃ ┃ ┣ 📜 eval_ragas.py               # Validación RAGAS (LLM-as-Judge)
- ┃ ┃ ┗ 📜 eval_retrieval.py           # Validación Retrieval (Hit Rate/MRR)
  ┃ ┣ 📂 bot                           # Integraciones
- ┃ ┃ ┗ 📜 telegram_bot.py             # 🤖 Bot de Telegram
  ┃ ┗ 📂 utils                         # Utilidades
- ┃   ┗ 📜 tools_data.py               # Herramientas de Pandas/Datos
- ┣ 📂 chroma_db                       # 💾 Base de datos Vectorial
- ┣ 📂 data                            # 📊 Datos CSV y Golden Datasets
- ┣ 📂 docs                            # 📄 Documentos PDF de entrada
- ┣ 📂 static/labeled_images           # 🖼️ Imágenes extraídas etiquetadas
+ ┣ 📂 chroma_db                       # 💾 Base de datos (Se genera LOCALMENTE)
+ ┣ 📂 data                            # 📊 Datos CSV (Incluidos de ejemplo)
+ ┣ 📂 docs                            # 📄 Documentos PDF (Incluidos de ejemplo)
+ ┣ 📂 static/labeled_images           # 🖼️ Imágenes extraídas (Se generan LOCALMENTE)
  ┗ 📜 requirements.txt                # Dependencias
 ```
 

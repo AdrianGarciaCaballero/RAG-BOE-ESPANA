@@ -16,8 +16,7 @@ env/
 .idea/
 
 # Project specific
-docs/
 static/labeled_images/
 chroma_db/
+
 chat_history.json
-data/

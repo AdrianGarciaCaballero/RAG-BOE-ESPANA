@@ -1,0 +1,27 @@
+[
+    {
+        "question": "¿Cuál es el objeto de la Ley de Seguridad Privada?",
+        "ground_truth": "La ley tiene por objeto regular la realización y la prestación por personas privadas, físicas o jurídicas, de actividades y servicios de seguridad privada.",
+        "reference_doc": "BOE-058_Codigo_de_Seguridad_Privada.pdf"
+    },
+    {
+        "question": "¿Qué derechos garantiza la Constitución Española?",
+        "ground_truth": "Garantiza la convivencia democrática dentro de la Constitución y las leyes conforme a un orden económico y social justo, consolidar un Estado de Derecho que asegure el imperio de la ley, y proteger a todos los españoles y pueblos de España en el ejercicio de los derechos humanos.",
+        "reference_doc": "BOE-151_Constitucion_Espanola.pdf"
+    },
+    {
+        "question": "¿A quién se aplica el Estatuto de los Trabajadores?",
+        "ground_truth": "A los trabajadores que voluntariamente presten sus servicios retribuidos por cuenta ajena y dentro del ámbito de organización y dirección de otra persona, física o jurídica.",
+        "reference_doc": "BOE-093_Codigo_Laboral_y_de_la_Seguridad_Social_.pdf"
+    },
+    {
+        "question": "¿Qué regula el Código de Derecho de la Ciberseguridad?",
+        "ground_truth": "Regula la seguridad de las redes y sistemas de información de interés general, incluyendo la protección de infraestructuras críticas y la estrategia de ciberseguridad nacional.",
+        "reference_doc": "BOE-173_Codigo_de_Derecho_de_la_Ciberseguridad.pdf"
+    },
+    {
+        "question": "¿Qué es el procedimiento administrativo común?",
+        "ground_truth": "Es el conjunto de trámites y actuaciones que deben realizar las Administraciones Públicas para la producción de actos administrativos, garantizando los derechos de los interesados.",
+        "reference_doc": "BOE-282_Procedimiento_Administrativo_Comun.pdf"
+    }
+]

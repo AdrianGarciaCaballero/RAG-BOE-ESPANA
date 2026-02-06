@@ -1,0 +1,51 @@
+ID_Empleado,Nombre_Empleado,Departamento,Tipo_Contrato,Tipo_Permiso,Fecha_Inicio,Fecha_Fin,Días_Solicitados,Estado
+EMP001,Carlos Ruiz,IT - Sonómetros,General,Vacaciones,2026-08-01,2026-08-15,15,Aprobado
+EMP002,Ana Belén G.,Mantenimiento,Autónomo/TRADE,Vacaciones,2026-07-10,2026-07-20,10,Aprobado
+EMP003,Lucía Méndez,Limpieza/Hogar,Régimen Hogar,Asuntos Propios,2026-02-15,2026-02-15,1,Aprobado
+EMP004,Javier Solís,RRHH,General,Vacaciones,2026-12-24,2026-12-31,8,Aprobado
+EMP005,Marta Vila,IT - Tráfico,General,Formación,2026-03-05,2026-03-06,2,Aprobado
+EMP006,Sergio Ramos,Mantenimiento,General,Vacaciones,2026-08-15,2026-08-30,15,Pendiente
+EMP007,Elena Pozo,Administración,General,Mudanza,2026-04-12,2026-04-12,1,Denegado
+EMP008,Roberto Gil,IT - Datos,Autónomo/TRADE,Vacaciones,2026-09-01,2026-09-10,10,Aprobado
+EMP009,Carla Ortiz,Mantenimiento,General,Vacaciones,2026-07-01,2026-07-15,15,Aprobado
+EMP010,Diego Sanz,RRHH,General,Matrimonio,2026-06-01,2026-06-15,15,Aprobado
+EMP011,Sofia Luna,IT - Sonómetros,General,Vacaciones,2026-08-10,2026-08-20,10,Pendiente
+EMP012,Raúl Castro,Mantenimiento,General,Vacaciones,2026-05-20,2026-05-25,5,Aprobado
+EMP013,Bea Atienza,Administración,General,Asuntos Propios,2026-10-12,2026-10-12,1,Aprobado
+EMP014,Iker Casado,IT - Tráfico,General,Vacaciones,2026-01-02,2026-01-10,9,Aprobado
+EMP015,Lola Flores,Limpieza/Hogar,Régimen Hogar,Vacaciones,2026-08-01,2026-08-15,15,Pendiente
+EMP016,Marcos Paz,Mantenimiento,General,Formación,2026-11-05,2026-11-05,1,Aprobado
+EMP017,Julia Otero,RRHH,General,Vacaciones,2026-07-20,2026-08-05,16,Aprobado
+EMP018,Omar Khayyam,IT - Datos,Autónomo/TRADE,Vacaciones,2026-06-15,2026-06-25,10,Denegado
+EMP019,Sara Baras,Mantenimiento,General,Vacaciones,2026-09-10,2026-09-20,10,Aprobado
+EMP020,Luis Miguel,Administración,General,Vacaciones,2026-12-15,2026-12-30,15,Pendiente
+EMP021,Eva Amaral,IT - Sonómetros,General,Lactancia,2026-03-01,2026-03-15,15,Aprobado
+EMP022,Pau Donés,Mantenimiento,General,Vacaciones,2026-07-15,2026-07-30,15,Aprobado
+EMP023,Rosario F.,Limpieza/Hogar,Régimen Hogar,Enfermedad,2026-02-01,2026-02-03,3,Aprobado
+EMP024,Dani Martín,RRHH,General,Vacaciones,2026-08-01,2026-08-10,10,Pendiente
+EMP025,Malú Trejo,IT - Tráfico,General,Vacaciones,2026-05-01,2026-05-15,15,Aprobado
+EMP026,Fito Cabrales,Mantenimiento,Autónomo/TRADE,Vacaciones,2026-08-20,2026-08-30,10,Aprobado
+EMP027,Amaia Montero,Administración,General,Mudanza,2026-09-25,2026-09-25,1,Aprobado
+EMP028,Leiva Sangre,IT - Datos,General,Vacaciones,2026-07-05,2026-07-20,15,Aprobado
+EMP029,Rozalén P.,Mantenimiento,General,Vacaciones,2026-06-10,2026-06-20,10,Pendiente
+EMP030,Melendi R.,RRHH,General,Asuntos Propios,2026-11-01,2026-11-01,1,Aprobado
+EMP031,Aitana O.,IT - Sonómetros,General,Vacaciones,2026-12-20,2026-12-31,12,Pendiente
+EMP032,C. Tangana,Mantenimiento,General,Vacaciones,2026-08-01,2026-08-15,15,Aprobado
+EMP033,Rosalía V.,Limpieza/Hogar,Régimen Hogar,Vacaciones,2026-07-15,2026-07-30,15,Aprobado
+EMP034,Quevedo L.,RRHH,General,Vacaciones,2026-06-01,2026-06-05,5,Denegado
+EMP035,Bad Gyal,IT - Tráfico,General,Vacaciones,2026-09-01,2026-09-15,15,Aprobado
+EMP036,Lola Indigo,Mantenimiento,General,Formación,2026-10-10,2026-10-11,2,Aprobado
+EMP037,Abraham M.,Administración,General,Vacaciones,2026-08-15,2026-08-30,15,Pendiente
+EMP038,Niña Pastori,IT - Datos,Autónomo/TRADE,Vacaciones,2026-05-05,2026-05-15,10,Aprobado
+EMP039,David Bisbal,Mantenimiento,General,Vacaciones,2026-07-01,2026-07-10,10,Aprobado
+EMP040,Chenoa C.,RRHH,General,Matrimonio,2026-10-01,2026-10-15,15,Aprobado
+EMP041,Bustamante D.,IT - Sonómetros,General,Vacaciones,2026-08-20,2026-08-30,10,Pendiente
+EMP042,Manuel C.,Mantenimiento,General,Vacaciones,2026-06-15,2026-06-25,10,Aprobado
+EMP043,Vanesa M.,Administración,General,Asuntos Propios,2026-03-20,2026-03-20,1,Aprobado
+EMP044,Pablo A.,IT - Tráfico,General,Vacaciones,2026-07-05,2026-07-20,15,Aprobado
+EMP045,India M.,Limpieza/Hogar,Régimen Hogar,Vacaciones,2026-08-01,2026-08-15,15,Pendiente
+EMP046,Antonio O.,Mantenimiento,General,Vacaciones,2026-05-10,2026-05-15,5,Aprobado
+EMP047,Pastora S.,RRHH,General,Vacaciones,2026-11-15,2026-11-20,5,Aprobado
+EMP048,Alejandro S.,IT - Datos,Autónomo/TRADE,Vacaciones,2026-12-01,2026-12-10,10,Aprobado
+EMP049,Mónica N.,Mantenimiento,General,Vacaciones,2026-06-01,2026-06-15,15,Denegado
+EMP050,Bunbury E.,Administración,General,Vacaciones,2026-08-01,2026-08-20,20,Aprobado
