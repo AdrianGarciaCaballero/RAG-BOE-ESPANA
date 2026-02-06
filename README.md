@@ -252,5 +252,5 @@ Normas orientadas a seguridad, datos y ciberseguridad corporativa:
 
 - Código de Seguridad Ciudadana (actualizado)
 - Código de Seguridad Privada (actualizado)
-- Protección de Datos de Carácter Personal (actualizado)[web:63][web:66][web:69]
+- Protección de Datos de Carácter Personal (actualizado)
 - Código de Ciberseguridad (actualizado)
