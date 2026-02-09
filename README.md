@@ -69,7 +69,7 @@ En una terminal:
 ```bash
 uvicorn main:app --host 0.0.0.0 --port 8000 --reload
 ```
-*Si ves "🧠 RAG Table-Master Iniciado", todo está bien.*
+*Si aparece "🧠 RAG Table-Master Iniciado", significa que el backend se ha iniciado correctamente.*
 
 ### 3. Iniciar el Frontend (Chat)
 En **otra** terminal:
