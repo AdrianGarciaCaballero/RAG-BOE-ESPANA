@@ -145,7 +145,22 @@ Script: `eval_ragas.py`
     ```bash
     python eval_ragas.py
     ```
+## 📊 Optimización del Motor de Búsqueda (Benchmarking)
 
+Para garantizar la máxima precisión jurídica, realizamos un experimento de optimización sobre documentos de gran extensión (ej. Constitución Española, >600 páginas). Evaluamos cómo el tamaño de los fragmentos (*chunks*) afecta a la capacidad de recuperación del sistema.
+
+### Experimento de Configuración de Chunks
+Se compararon tres arquitecturas de segmentación para medir la relevancia de los resultados recuperados:
+
+| Configuración | Tamaño (Chars) | Solapamiento | Hit Rate (Puntería) | MRR (Calidad) |
+| :--- | :--- | :--- | :--- | :--- |
+| **Small** | **500** | **50** | **0.6** | **0.40** |
+| **Base** | 1000 | 100 | 0.6 | 0.27 |
+| **Large** | 2000 | 200 | 0.4 | 0.30 |
+
+### 🔍 Glosario de Métricas Utilizadas
+* **Hit Rate**: Indica el % de veces que la respuesta correcta aparece dentro de los primeros resultados.
+* **MRR (Mean Reciprocal Rank)**: Mide qué tan arriba en la lista aparece la respuesta correcta. Un MRR más alto (0.4) indica que el sistema coloca la información relevante en las primeras posiciones, ahorrando tiempo y tokens al LLM.
 ---
 
 ---
