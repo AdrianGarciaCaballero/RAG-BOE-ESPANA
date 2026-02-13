@@ -14,7 +14,7 @@ Este proyecto es un **Sistema de RAG (Retrieval-Augmented Generation) Multimodal
 *   **Análisis Visual de Documentos**: Si el documento contiene imágenes o gráficos, el sistema las busca mediante descripción semántica.
 *   **Visual Filter (LLaVA)**: Un nodo agente utiliza el modelo de visión `llava` para "mirar" la imagen candidata y verificar si contiene la respuesta exacta (ej: leer un dato numérico de una tabla escaneada).
 *   **Base de Conocimiento Visual**: El sistema utiliza un repositorio de imágenes pre-procesadas y etiquetadas (en `static/labeled_images`) que se recuperan y adjuntan automáticamente a la respuesta cuando son relevantes para la consulta del usuario.
-*   **Query-by-Image**: ¡Nuevo! Puedes subir una foto (nómina, contrato) al chat y preguntar sobre ella. El sistema la analiza con LLaVA y usa esa información para buscar en la base de datos.
+*   **Query-by-Image**: Puedes subir una foto (nómina, contrato) al chat y preguntar sobre ella. El sistema la analiza con LLaVA y usa esa información para buscar en la base de datos.
 
 ### 3. 🧠 Router & Agentes ("Cerebro")
 El sistema no busca ciegamente. Tiene un **Router Inteligente** que clasifica tu pregunta:
