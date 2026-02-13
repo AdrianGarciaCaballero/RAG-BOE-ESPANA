@@ -147,7 +147,7 @@ Script: `eval_ragas.py`
     ```
 ## 📊 Optimización del Motor de Búsqueda (Benchmarking)
 
-Para garantizar la máxima precisión jurídica, realizamos un experimento de optimización sobre documentos de gran extensión (ej. Constitución Española, >600 páginas).Debido a la gran cantidad de documentos solo se hara el chunking de el documento 135 de boe, Evaluamos cómo el tamaño de los fragmentos (*chunks*) afecta a la capacidad de recuperación del sistema.
+Para garantizar la máxima precisión jurídica, realizamos un experimento de optimización sobre documentos de gran extensión (ej. Constitución Española, >600 páginas).Debido a la gran cantidad de documentos solo se hara el chunking de 3 documentos, Evaluamos cómo el tamaño de los fragmentos (*chunks*) afecta a la capacidad de recuperación del sistema.
 
 ### 🧪 Configuraciones Probadas
 * **Small:** 500 caracteres (50 overlap) - Alta granularidad para artículos específicos.
