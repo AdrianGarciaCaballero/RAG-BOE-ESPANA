@@ -159,7 +159,7 @@ Para garantizar la máxima precisión jurídica, realizamos un experimento de op
 | Documento | Configuración | Chunk / Overlap | Hit Rate | MRR | Conclusión |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | **Constitución Española** | **Small** | **500 / 50** | **0.60** | **0.400** | 🏆 **Mejor Global.** La precisión gana en leyes fundamentales. |
-| *(Texto Legal Núcleo)* | Base | 1000 / 100 | 0.60 | 0.267 | Buena recuperación, menor precisión en el ranking. |
+| *(200 paginas)* | Base | 1000 / 100 | 0.60 | 0.267 | Buena recuperación, menor precisión en el ranking. |
 | | Large | 2000 / 200 | 0.40 | 0.300 | Pérdida de especificidad. |
 | | | | | | |
 | **Funcionarios Justicia** | Small | 500 / 50 | 0.20 | **0.200** | Buen ranking, recuperación pobre. |
