@@ -149,14 +149,26 @@ Script: `eval_ragas.py`
 
 Para garantizar la máxima precisión jurídica, realizamos un experimento de optimización sobre documentos de gran extensión (ej. Constitución Española, >600 páginas).Debido a la gran cantidad de documentos solo se hara el chunking de el documento 135 de boe, Evaluamos cómo el tamaño de los fragmentos (*chunks*) afecta a la capacidad de recuperación del sistema.
 
-### Experimento de Configuración de Chunks
-Se compararon tres arquitecturas de segmentación para medir la relevancia de los resultados recuperados:
+### 🧪 Configuraciones Probadas
+* **Small:** 500 caracteres (50 overlap) - Alta granularidad para artículos específicos.
+* **Base:** 1000 caracteres (100 overlap) - Balance estándar.
+* **Large:** 2000 caracteres (200 overlap) - Contexto más amplio.
 
-| Configuración | Tamaño (Chars) | Solapamiento | Hit Rate (Puntería) | MRR (Calidad) |
-| :--- | :--- | :--- | :--- | :--- |
-| **Small** | **500** | **50** | **0.6** | **0.40** |
-| **Base** | 1000 | 100 | 0.6 | 0.27 |
-| **Large** | 2000 | 200 | 0.4 | 0.30 |
+### 📈 Resultados Consolidados
+
+| Documento | Configuración | Chunk / Overlap | Hit Rate | MRR | Conclusión |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **Constitución Española** | **Small** | **500 / 50** | **0.60** | **0.400** | 🏆 **Mejor Global.** La precisión gana en leyes fundamentales. |
+| *(Texto Legal Núcleo)* | Base | 1000 / 100 | 0.60 | 0.267 | Buena recuperación, menor precisión en el ranking. |
+| | Large | 2000 / 200 | 0.40 | 0.300 | Pérdida de especificidad. |
+| | | | | | |
+| **Funcionarios Justicia** | Small | 500 / 50 | 0.20 | **0.200** | Buen ranking, recuperación pobre. |
+| *(488 páginas)* | **Base** | **1000 / 100** | **0.40** | 0.150 | 🏆 **Mejor Hit Rate.** Captura información más relevante. |
+| | Large | 2000 / 200 | 0.20 | 0.200 | Resultados similares a Small. |
+| | | | | | |
+| **Código D. Sindical** | Small | 500 / 50 | 0.20 | 0.050 | Dificultades debido al alto volumen. |
+| *(1389 páginas)* | Base | 1000 / 100 | 0.20 | 0.040 | La precisión de ranking más baja. |
+| | **Large** | **2000 / 200** | **0.20** | **0.067** | 🏆 **Marginalmente Mejor.** El contexto amplio ayuda un poco en docs masivos. ||
 
 ### 🔍 Glosario de Métricas Utilizadas
 * **Hit Rate**: Indica el % de veces que la respuesta correcta aparece dentro de los primeros resultados.
