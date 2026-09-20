@@ -8,9 +8,14 @@ import random
 import time
 from datetime import datetime
 
-API_URL = "http://localhost:8000"
+API_URL = os.getenv("RAG_API_URL", "http://localhost:8000")
+ADMIN_API_KEY = os.getenv("RAG_ADMIN_API_KEY")
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 HISTORY_FILE = os.path.join(BASE_DIR, "chat_history.json")
+
+
+def admin_headers():
+    return {"Authorization": f"Bearer {ADMIN_API_KEY}"} if ADMIN_API_KEY else {}
 
 st.set_page_config(page_title="RAG Multimodal BOE", layout="wide")
 
@@ -206,7 +211,12 @@ with st.sidebar:
             with st.spinner("Subiendo y procesando..."):
                 try:
                     files = {"file": (uploaded_file.name, uploaded_file, "application/pdf")}
-                    response = requests.post(f"{API_URL}/ingest", files=files)
+                    response = requests.post(
+                        f"{API_URL}/ingest",
+                        files=files,
+                        headers=admin_headers(),
+                        timeout=120,
+                    )
                     
                     if response.status_code == 200:
                         resp_json = response.json()
@@ -365,7 +375,12 @@ with tab_admin:
                 with col_btn:
                     if st.button("🗑️ Eliminar Documento", type="primary"):
                         if doc_to_delete:
-                            del_res = requests.delete(f"{API_URL}/documents", params={"filename": doc_to_delete})
+                            del_res = requests.delete(
+                                f"{API_URL}/documents",
+                                params={"filename": doc_to_delete},
+                                headers=admin_headers(),
+                                timeout=30,
+                            )
                             if del_res.status_code == 200:
                                 st.success(f"✅ Documento '{doc_to_delete}' eliminado correctamente.")
                                 time.sleep(1) 

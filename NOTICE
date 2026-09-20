@@ -1,0 +1,11 @@
+RAG-BOE-ESPANA
+Copyright 2026 Adrian Garcia Caballero
+
+The Apache License 2.0 applies to the original software and project
+documentation in this repository. It does not relicense third-party legal
+documents, datasets, model weights, or dependencies.
+
+The repository contains documents sourced from the Agencia Estatal Boletin
+Oficial del Estado. See DATA_SOURCES.md for attribution and the applicable
+terms. The Agencia Estatal Boletin Oficial del Estado does not participate in,
+sponsor, or endorse this project.
