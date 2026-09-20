@@ -12,7 +12,7 @@ load_dotenv()
 
 # Configuración
 TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN")
-API_URL = "http://localhost:8000/chat"
+API_URL = os.getenv("RAG_CHAT_URL", "http://localhost:8000/chat")
 
 # Logging
 logging.basicConfig(
@@ -88,7 +88,10 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
         
         # Ejecutar request en un thread pool
         loop = asyncio.get_event_loop()
-        response = await loop.run_in_executor(None, lambda: requests.post(API_URL, json=payload))
+        response = await loop.run_in_executor(
+            None,
+            lambda: requests.post(API_URL, json=payload, timeout=120),
+        )
         
         if response.status_code == 200:
             data = response.json()

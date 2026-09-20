@@ -5,6 +5,8 @@ __pycache__/
 
 # Environment variables
 .env
+.env.*
+!.env.example
 
 # Virtual Environment
 venv/
@@ -14,9 +16,13 @@ env/
 # IDEs
 .vscode/
 .idea/
+.DS_Store
 
 # Project specific
 static/labeled_images/
 chroma_db/
 
 chat_history.json
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
