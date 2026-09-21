@@ -199,3 +199,12 @@ El codigo original y la documentacion del proyecto se publican bajo
 [Apache License 2.0](LICENSE). Los documentos, datos, dependencias y modelos de
 terceros conservan sus propias licencias y condiciones; consulta [NOTICE](NOTICE)
 y [DATA_SOURCES.md](DATA_SOURCES.md).
+
+## Procedencia de documentos
+
+Cada documento de terceros en `docs/` esta registrado en
+[`docs/provenance.yaml`](docs/provenance.yaml) con URL de origen, fecha de
+obtencion, checksum SHA-256, fecha del documento y terminos de reutilizacion.
+Antes de anadir o actualizar un documento, edita el manifiesto y ejecuta
+`python scripts/validate_provenance.py` para verificar checksums y campos
+obligatorios. Consulta [DATA_SOURCES.md](DATA_SOURCES.md) para mas contexto.
