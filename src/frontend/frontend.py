@@ -10,6 +10,7 @@ from datetime import datetime
 
 API_URL = os.getenv("RAG_API_URL", "http://localhost:8000")
 ADMIN_API_KEY = os.getenv("RAG_ADMIN_API_KEY")
+API_CONNECTION_ERROR = "No se pudo conectar con la API. Comprueba que esté en marcha e inténtalo de nuevo."
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 HISTORY_FILE = os.path.join(BASE_DIR, "chat_history.json")
 
@@ -88,6 +89,22 @@ with st.sidebar:
             section[data-testid="stSidebar"] {
                 background-color: #262730;
                 color: #fafafa;
+            }
+            section[data-testid="stSidebar"] .stMarkdown,
+            section[data-testid="stSidebar"] h1,
+            section[data-testid="stSidebar"] h2,
+            section[data-testid="stSidebar"] h3,
+            section[data-testid="stSidebar"] h4,
+            section[data-testid="stSidebar"] p,
+            section[data-testid="stSidebar"] span,
+            section[data-testid="stSidebar"] label,
+            section[data-testid="stSidebar"] li {
+                color: #fafafa !important;
+            }
+            section[data-testid="stSidebar"] button[kind="secondary"] {
+                background-color: #3a3b45 !important;
+                color: #fafafa !important;
+                border: 1px solid #737580 !important;
             }
         </style>
         """, unsafe_allow_html=True)
@@ -181,7 +198,7 @@ with st.sidebar:
     sorted_sessions = sorted(st.session_state.sessions.items(), key=lambda x: x[1].get("created_at", ""), reverse=True)
     
     for sid, s_data in sorted_sessions:
-        col1, col2 = st.columns([5, 1])
+        col1, col2 = st.columns([3, 4])
         label = s_data.get("title", "Chat sin título")
         is_active = sid == st.session_state.current_session
         
@@ -191,7 +208,7 @@ with st.sidebar:
                 st.rerun()
                 
         with col2:
-            if st.button("🗑️", key=f"del_{sid}", help="Eliminar chat"):
+            if st.button("🗑️ Eliminar chat", key=f"del_{sid}", help="Eliminar chat"):
                 del st.session_state.sessions[sid]
                 save_history(st.session_state.sessions)
                 if is_active:
@@ -215,7 +232,7 @@ with st.sidebar:
                         f"{API_URL}/ingest",
                         files=files,
                         headers=admin_headers(),
-                        timeout=120,
+                        timeout=(5, 120),
                     )
                     
                     if response.status_code == 200:
@@ -231,8 +248,8 @@ with st.sidebar:
                             st.error(f"❌ {msg}")
                     else:
                         st.error(f"❌ Error: {response.text}")
-                except Exception as e:
-                    st.error(f"❌ Error de conexión: {e}")
+                except requests.RequestException:
+                    st.error(API_CONNECTION_ERROR)
 
 tab_chat, tab_admin = st.tabs(["💬 Chat", "🗂️ Gestión Documental"])
 
@@ -244,6 +261,8 @@ with tab_chat:
     """)
 
     current_messages = st.session_state.sessions[st.session_state.current_session]["messages"]
+    if not current_messages:
+        st.info("La conversación está vacía. Escribe una pregunta para empezar.")
 
     current_session_data = st.session_state.sessions[st.session_state.current_session]
     session_avatar = current_session_data.get("avatar", "👤")
@@ -264,15 +283,30 @@ with tab_chat:
             st.image(img_file, width=200)
             query_image_b64 = base64.b64encode(img_file.read()).decode('utf-8')
 
-    if prompt := st.chat_input("Escribe tu pregunta aquí..."):
-        
-        user_msg = {"role": "user", "content": prompt}
-        st.session_state.sessions[st.session_state.current_session]["messages"].append(user_msg)
-        
-        if len(st.session_state.sessions[st.session_state.current_session]["messages"]) == 1:
-            new_title = " ".join(prompt.split()[:5]) + "..."
-            st.session_state.sessions[st.session_state.current_session]["title"] = new_title
-        save_history(st.session_state.sessions)
+    retry_request = st.session_state.get("retry_prompt")
+    retry_matches_session = (
+        isinstance(retry_request, dict)
+        and retry_request.get("session_id") == st.session_state.current_session
+    )
+    st.session_state.pop("retry_prompt", None)
+    entered_prompt = st.chat_input("Escribe tu pregunta aquí...")
+    prompt = retry_request["prompt"] if retry_matches_session else entered_prompt
+    if prompt:
+        is_retry = retry_matches_session
+        if not is_retry:
+            failed_prompt = st.session_state.get("failed_prompt")
+            if (
+                isinstance(failed_prompt, dict)
+                and failed_prompt.get("session_id") == st.session_state.current_session
+            ):
+                st.session_state.pop("failed_prompt", None)
+            user_msg = {"role": "user", "content": prompt}
+            st.session_state.sessions[st.session_state.current_session]["messages"].append(user_msg)
+
+            if len(st.session_state.sessions[st.session_state.current_session]["messages"]) == 1:
+                new_title = " ".join(prompt.split()[:5]) + "..."
+                st.session_state.sessions[st.session_state.current_session]["title"] = new_title
+            save_history(st.session_state.sessions)
         
         current_avatar = st.session_state.sessions[st.session_state.current_session].get("avatar", "👤")
         with st.chat_message("user", avatar=current_avatar):
@@ -282,6 +316,7 @@ with tab_chat:
             # Variables contenedoras para metadatos extraídos del stream
             found_images = []
             found_sources = []
+            stream_errors = []
             
             def stream_generator():
                 payload = {"question": prompt, "style": tone}
@@ -289,7 +324,12 @@ with tab_chat:
                     payload["image"] = query_image_b64
                 
                 try:
-                    with requests.post(f"{API_URL}/chat/stream", json=payload, stream=True) as r:
+                    with requests.post(
+                        f"{API_URL}/chat/stream",
+                        json=payload,
+                        stream=True,
+                        timeout=(5, 120),
+                    ) as r:
                         r.raise_for_status()
                         
                         buffer = ""
@@ -336,24 +376,48 @@ with tab_chat:
                                         pass
                                 else:
                                     yield chunk
-                except Exception as e:
-                    yield f"❌ Error de conexión: {str(e)}"
+                except requests.RequestException as e:
+                    stream_errors.append(e)
 
+            stream_status = st.status("Consultando el asistente…", state="running", expanded=False)
             full_response = st.write_stream(stream_generator())
-            
-            # --- SHOW IMAGES POST-STREAM ---
-            if found_images:
-                for img_path in found_images:
-                    full_url = f"{API_URL}/{img_path}"
-                    st.image(full_url, caption="Evidencia Visual / Relacionada", width=400)
-            
-            asst_msg = {
-                "role": "assistant", 
-                "content": full_response,
-                "images": found_images # Persist in history
-            }
-            st.session_state.sessions[st.session_state.current_session]["messages"].append(asst_msg)
-            save_history(st.session_state.sessions)
+
+            if stream_errors:
+                stream_status.update(label="No se pudo completar la respuesta", state="error")
+                st.error(API_CONNECTION_ERROR)
+                st.session_state.failed_prompt = {
+                    "session_id": st.session_state.current_session,
+                    "prompt": prompt,
+                }
+            else:
+                stream_status.update(label="Respuesta recibida", state="complete", expanded=False)
+                st.session_state.pop("failed_prompt", None)
+                # --- SHOW IMAGES POST-STREAM ---
+                if found_images:
+                    for img_path in found_images:
+                        full_url = f"{API_URL}/{img_path}"
+                        st.image(full_url, caption="Evidencia Visual / Relacionada", width=400)
+
+                asst_msg = {
+                    "role": "assistant",
+                    "content": full_response,
+                    "images": found_images,  # Persist in history
+                }
+                st.session_state.sessions[st.session_state.current_session]["messages"].append(asst_msg)
+                save_history(st.session_state.sessions)
+
+    failed_prompt = st.session_state.get("failed_prompt")
+    if (
+        isinstance(failed_prompt, dict)
+        and failed_prompt.get("session_id") == st.session_state.current_session
+    ):
+        if st.button(
+            "Reintentar respuesta",
+            key=f"retry_{st.session_state.current_session}",
+        ):
+            st.session_state.retry_prompt = failed_prompt
+            st.session_state.pop("failed_prompt", None)
+            st.rerun()
 
 with tab_admin:
     st.header("️ Panel de Gestión de Documentos")
@@ -363,7 +427,8 @@ with tab_admin:
         st.rerun()
         
     try:
-        res = requests.get(f"{API_URL}/documents")
+        with st.spinner("Cargando documentos…"):
+            res = requests.get(f"{API_URL}/documents", timeout=(5, 15))
         if res.status_code == 200:
             docs = res.json().get("documents", [])
             if docs:
@@ -375,23 +440,26 @@ with tab_admin:
                 with col_btn:
                     if st.button("🗑️ Eliminar Documento", type="primary"):
                         if doc_to_delete:
-                            del_res = requests.delete(
-                                f"{API_URL}/documents",
-                                params={"filename": doc_to_delete},
-                                headers=admin_headers(),
-                                timeout=30,
-                            )
-                            if del_res.status_code == 200:
-                                st.success(f"✅ Documento '{doc_to_delete}' eliminado correctamente.")
-                                time.sleep(1) 
-                                st.rerun()
-                            else:
-                                st.error(f"❌ Error al eliminar: {del_res.text}")
+                            try:
+                                del_res = requests.delete(
+                                    f"{API_URL}/documents",
+                                    params={"filename": doc_to_delete},
+                                    headers=admin_headers(),
+                                    timeout=(5, 30),
+                                )
+                                if del_res.status_code == 200:
+                                    st.success(f"✅ Documento '{doc_to_delete}' eliminado correctamente.")
+                                    time.sleep(1)
+                                    st.rerun()
+                                else:
+                                    st.error("No se pudo eliminar el documento. Revisa los permisos e inténtalo de nuevo.")
+                            except requests.RequestException:
+                                st.error("No se pudo eliminar el documento. Comprueba que la API esté en marcha e inténtalo de nuevo.")
                 
                 st.table(docs)
             else:
                 st.warning("⚠️ No hay documentos indexados aún.")
         else:
-            st.error("Error conectando con backend.")
-    except Exception as e:
-        st.error(f"Error de conexión: {e}")
+            st.error("La API no pudo cargar los documentos. Pulsa «Refrescar Lista» para volver a intentarlo.")
+    except requests.RequestException:
+        st.error("No se pudo cargar la lista de documentos. Comprueba que la API esté en marcha y pulsa «Refrescar Lista».")
