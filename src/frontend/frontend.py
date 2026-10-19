@@ -24,13 +24,16 @@ def load_history():
         try:
             with open(HISTORY_FILE, "r") as f:
                 return json.load(f)
-        except:
+        except (OSError, json.JSONDecodeError):
             return {}
     return {}
 
 def save_history(history):
-    with open(HISTORY_FILE, "w") as f:
-        json.dump(history, f, indent=4)
+    try:
+        with open(HISTORY_FILE, "w", encoding="utf-8") as f:
+            json.dump(history, f, indent=4)
+    except OSError as exc:
+        st.error(f"No se pudo guardar el historial del chat: {exc}")
 
 def create_session():
     session_id = str(uuid.uuid4())
@@ -245,6 +248,9 @@ with tab_chat:
 
     current_messages = st.session_state.sessions[st.session_state.current_session]["messages"]
 
+    if not current_messages:
+        st.info("Todavia no hay mensajes en esta sesion. Escribe una pregunta para comenzar.")
+
     current_session_data = st.session_state.sessions[st.session_state.current_session]
     session_avatar = current_session_data.get("avatar", "👤")
 
@@ -289,7 +295,7 @@ with tab_chat:
                     payload["image"] = query_image_b64
                 
                 try:
-                    with requests.post(f"{API_URL}/chat/stream", json=payload, stream=True) as r:
+                    with requests.post(f"{API_URL}/chat/stream", json=payload, stream=True, timeout=120) as r:
                         r.raise_for_status()
                         
                         buffer = ""
@@ -363,7 +369,7 @@ with tab_admin:
         st.rerun()
         
     try:
-        res = requests.get(f"{API_URL}/documents")
+        res = requests.get(f"{API_URL}/documents", timeout=30)
         if res.status_code == 200:
             docs = res.json().get("documents", [])
             if docs:
